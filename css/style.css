@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: work sans, sans-serif;
+    letter-spacing: 2px;
+    background-color: black;
+}
+header{
+    text-transform: uppercase;
+    justify-content: space-between;
+    background-color: black;
+}
+header img{
+    width: 25%;
+}
+.logo{
+    color:#eea157;
+    margin: 1%;
+    font-weight: bold;
+    font-size: 130%;
+
+}
+main img{
+    width: 100%;
+}
+ 
+header{
+    display: flex;
+}
+nav {
+    order: 1;
+    display: flex;
+}
+ul{
+ display: flex;
+ align-items: center;
+ 
+}
