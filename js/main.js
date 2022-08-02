@@ -55,4 +55,3 @@ for( let i = 0; i < cantidadCompras; i++){
         alert("no tenemos ese producto")
     }
 }
-console.log(productoA)
