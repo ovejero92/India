@@ -3,7 +3,7 @@ class Producto {
         this.nombre = nombre
         this.precio = precio
         this.stock = stock
-    }
+    } 
 }
 const productoA = new Producto("coca", 2520, 100)
 const productoB = new Producto("sprite", 1760, 100)
@@ -21,4 +21,12 @@ for(const producto of listaProductos){
                     <p>Unidades restantes: ${producto.stock}</p> `
                     
     document.body.append(card)                  
+}
+
+let addButton = docuement.getElementById('add-button')
+
+addButton.addEventListener("click", addToDoItem)
+
+function addToDoItem()
+    { 
 }
