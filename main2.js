@@ -1,5 +1,6 @@
 document.addEventListener('DOMcontentLoaded', () => {
-        let carrito = [];
+       
+    let carrito = [];
         const DOMitems = document.getElementById('items');
         const DOMcarrito = document.querySelector('#carrito');
         const DOMtotal = document.querySelector('#total');
@@ -46,30 +47,36 @@ document.addEventListener('DOMcontentLoaded', () => {
         
         function renderizarProductos() {
                 listaDeProductos.forEach((info) => {
-                const miNodo = document.createElement('div');
-                miNodo.classList.add('card', 'col-sm-4');
-                const miNodoCardBody = docuemnt.createElement('div');
-                miNodoCardBody.classList.add('card-body');
-                const miNodoTitle = document.createElement('h5');
-                miNodoTitle.classList.add('card-title');
-                miNodoTitle.innerText = info.nombre;
-                const miNodoPrecio = document.createElement('p');
-                miNodoPrecio.classList.add('card-text');
-                miNodoPrecio.innerText = `$${info.precio}`;
-                const miNodoStock = document.createElement('p');
-                miNodoStock.classList.add('card-text');
-                miNodoStock.innerText = `stock: ${info.stock}`;
-                const miNodoBoton = document.createElement('botton');
-                miNodoBoton.classList.add('btn', 'btn-primari');
-                miNodoBoton.innerText = '+';
-                miNodoBoton.setAttribute('marcador', info.id);
-                miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+                    //estructura
+                    const miNodo = document.createElement('div');
+                    miNodo.classList.add('card', 'col-sm-4');
+                    //body
+                    const miNodoCardBody = docuemnt.createElement('div');
+                    miNodoCardBody.classList.add('card-body');
+                    //titulo
+                    const miNodoTitle = document.createElement('h5');
+                    miNodoTitle.classList.add('card-title');
+                    miNodoTitle.innerText = info.nombre;
+                    //precio
+                    const miNodoPrecio = document.createElement('p');
+                    miNodoPrecio.classList.add('card-text');
+                    miNodoPrecio.innerText = `$${info.precio}`;
+                    //stock
+                    const miNodoStock = document.createElement('p');
+                    miNodoStock.classList.add('card-text');
+                    miNodoStock.innerText = `stock: ${info.stock}`;
+                    //boton
+                    const miNodoBoton = document.createElement('botton');
+                    miNodoBoton.classList.add('btn', 'btn-primari');
+                    miNodoBoton.innerText = '+';
+                    miNodoBoton.setAttribute('marcador', info.id);
+                    miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
                 // append
-                miNodoCardBody.appendChild(miNodoTitle);
-                miNodoCardBody.appendChild(miNodoPrecio);
-                miNodoCardBody.appendChild(miNodoStock);
-                miNodoCardBody.appendChild(miNodoBoton);
-                miNodo.appendChild(miNodoCardBody);
+                miNodoCardBody.append(miNodoTitle);
+                miNodoCardBody.append(miNodoPrecio);
+                miNodoCardBody.append(miNodoStock);
+                miNodoCardBody.append(miNodoBoton);
+                miNodo.append(miNodoCardBody);
                 DOMitems.append(miNodo);
             });
         }
