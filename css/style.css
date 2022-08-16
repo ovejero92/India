@@ -30,15 +30,10 @@ header{
     display: flex;
 }
 nav {
-    order: 1;
     display: flex;
 }
 ul{
  display: flex;
  align-items: center;
  
-}
-.comentarios{
-    background-color: blue;
-    
 }
