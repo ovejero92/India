@@ -1,4 +1,4 @@
-document.addEventListener('DOMcontentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
        
     let carrito = [];
         const DOMitems = document.getElementById('items');
@@ -43,7 +43,7 @@ document.addEventListener('DOMcontentLoaded', () => {
                 precio: 1200,
                 stock: 2000,
             }
-        ]
+        ];
         
         function renderizarProductos() {
                 listaDeProductos.forEach((info) => {
@@ -51,7 +51,7 @@ document.addEventListener('DOMcontentLoaded', () => {
                     const miNodo = document.createElement('div');
                     miNodo.classList.add('card', 'col-sm-4');
                     //body
-                    const miNodoCardBody = docuemnt.createElement('div');
+                    const miNodoCardBody = document.createElement('div');
                     miNodoCardBody.classList.add('card-body');
                     //titulo
                     const miNodoTitle = document.createElement('h5');
@@ -66,7 +66,7 @@ document.addEventListener('DOMcontentLoaded', () => {
                     miNodoStock.classList.add('card-text');
                     miNodoStock.innerText = `stock: ${info.stock}`;
                     //boton
-                    const miNodoBoton = document.createElement('botton');
+                    const miNodoBoton = document.createElemen('botton');
                     miNodoBoton.classList.add('btn', 'btn-primari');
                     miNodoBoton.innerText = '+';
                     miNodoBoton.setAttribute('marcador', info.id);
