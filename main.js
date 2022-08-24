@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     miNodoStock.classList.add('card-text');
                     miNodoStock.innerText = `stock: ${info.stock}`;
                     //boton
-                    const miNodoBoton = document.createElemen('botton');
+                    const miNodoBoton = document.createElement('button');
                     miNodoBoton.classList.add('btn', 'btn-primari');
                     miNodoBoton.innerText = '+';
                     miNodoBoton.setAttribute('marcador', info.id);
@@ -83,32 +83,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         function anyadirProductoAlCarrito(e) {
-            carrito.push(e.target.getAtribute("marcador"));
+            carrito.push(e.target.getAttribute ('marcador'))
             renderizarCarrito();
             guardarCarritoEnLocalStorage();
         }
         function renderizarCarrito() {
-            DOMcarrito.innerText = "";
-            const carritoSinDuplicado = [...new set(carrito)];
-            carritoSinDuplicado.forEach((item) => {
+            DOMcarrito.innerText = '';
+            const carritoSinDuplicados = [...new Set(carrito)];
+            carritoSinDuplicados.forEach((item) => {
                 const miItem = listaDeProductos.filter((itemBaseDatos) => {
                     return itemBaseDatos.id === parseInt(item);
                 });
                 const numeroUnidadesItem = carrito.reduce((total, itemId) => {
                     return itemId === item ? total += 1 : total;
                 }, 0);
-                const miNodo = document.createElement("li");
-                miNodo.classList.add("list-group-item", "text-rigth", "mx-2");
-                miNodo.innerText = "${numeroUnidadesItem} x ${miItem[0].nombre} - $${miItem[0].precio} ";
-                const miBoton = document.createElement("boton");
-                miBoton.classList.add("list-group-item", "tect-rigth", "mx-2");
-                miBoton.innerText = "x";
-                miBoton.style.marginleft = "1rem";
+                const miNodo = document.createElement('li');
+                miNodo.classList.add('list-group-item', 'text-rigth', 'mx-2');
+                miNodo.innerText = `${numeroUnidadesItem} x ${miItem[0].nombre} - $${miItem[0].precio} `;
+                const miBoton = document.createElement('button');
+                miBoton.classList.add('list-group-item', 'tect-rigth', 'mx-2');
+                miBoton.innerText = 'x';
+                miBoton.style.marginleft = '1rem';
                 miBoton.dataset.item = item;
-                miBoton.addEventListener("click", borrarItemCarrito);
+                miBoton.addEventListener('click', borrarItemCarrito);
 
-                miNodo.appendChild(miBoton);
-                DOMcarrito.appendChild(miNodo);
+                miNodo.append(miBoton);
+                DOMcarrito.append(miNodo);
             });
 
             DOMtotal.innerText = calcularTotal();
@@ -134,12 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
             renderizarCarrito();
             localStorage.clear();
         }
-        function guardarCarritoEnLocalStorage() {
-            localStorage.setItem("carrito", JSON.stringify(carrito));
+        function guardarCarritoEnLocalStorage () {
+            localStorage.setItem('carrito', JSON.stringify(carrito));
         }
-        function cargarCarritoDeLocalStorage() {
-            if (localStorage.getItem("carrito") !== null) {
-                carrito = JSON.parse(localStorage.getItem("carrito"));
+        function cargarCarritoDeLocalStorage () {
+            if (localStorage.getItem('carrito') !== null) {
+                carrito = JSON.parse(localStorage.getItem('carrito'));
             }
         }
         DOMbotonVaciar.addEventListener("click", vaciarCarrito);
