@@ -148,11 +148,16 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarProductos();
         renderizarCarrito();
     });
-    
-const Swal = require('sweetalert2')
+
+    const alerta = () => {
     Swal.fire({
-        title: 'Error!',
-        text: 'Do you want to continue',
-        icon: 'error',
-        confirmButtonText: 'Cool'
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
       })
+    }
+
+    let boton = document.getElementById('boton-finaliar')
+    boton.addEventListener('click', alerta)
