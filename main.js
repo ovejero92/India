@@ -7,45 +7,51 @@ document.addEventListener('DOMContentLoaded', () => {
         const DOMcarrito = document.querySelector('#carrito');
         const DOMtotal = document.querySelector('#total');
         const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+       
+        function AllProducto(id,nombre,precio,stock){
+            this.id = id
+            this.nombre = nombre
+            this.precio = precio
+            this.stock =stock
+        } 
+        let listaDeProductos = [  {
+            "id": 1,
+            "nombre": "coca",
+            "precio": 280,
+            "stock": 100
+            },
+            {
+            "id": 2,
+            "nombre": "sprite",
+            "precio": 300,
+            "stock": 200
+            },
+            {
+            "id": 3,
+            "nombre": "agua",
+            "precio": 180,
+            "stock": 500
+            },
+            {
+            "id": 4,
+            "nombre": "manaos",
+            "precio": 210,
+            "stock": 340
+            },
+            {
+            "id": 5,
+            "nombre": "levite",
+            "precio": 240,
+            "stock": 10
+            },
+            {
+            "id": 6,
+            "nombre": "fernet",
+            "precio": 1200,
+            "stock": 2000
+            }];
 
-        const listaDeProductos = [
-            {
-                id: 1,
-                nombre: "coca",
-                precio: 280,
-                stock: 100,
-            },
-            {
-                id: 2,
-                nombre: "sprite",
-                precio: 300,
-                stock: 200,
-            },
-            {
-                id: 3,
-                nombre: "agua",
-                precio: 180,
-                stock: 500,
-            },
-            {
-                id: 4,
-                nombre: "manaos",
-                precio: 210,
-                stock: 340,
-            },
-            {
-                id: 5,
-                nombre: "levite",
-                precio: 240,
-                stock: 10,
-            },
-            {
-                id: 6,
-                nombre: "fernet",
-                precio: 1200,
-                stock: 2000,
-            }
-        ];
+        
         
         function renderizarProductos() {
                 listaDeProductos.forEach((info) => {
@@ -109,10 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 miNodo.append(miBoton);
                 DOMcarrito.append(miNodo);
-            });
-
-            DOMtotal.innerText = calcularTotal();
-        }
+                  });
+     
+ 
+        DOMtotal.innerText = calcularTotal();
+        } 
         function borrarItemCarrito(e) {
             const id = e.target.dataset.item;
             carrito = carrito.filter((carritoId) => {
@@ -130,9 +137,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 0).tofixed(2);
         }
         function vaciarCarrito() {
-            carrito = [];
-            renderizarCarrito();
-            localStorage.clear();
+            Swal.fire({
+                icon: 'warning',
+                text:'estas seguro que queres vaciar tu lista?',
+                showConfirmButton:true,
+                confirmButtonText:'vaciar',
+                denyButtonText: 'no vaciar',
+            }).then((result) =>{
+                if(result.isConfirmed) {
+                    swal.fire('vaciamos la lista!', '','success')
+                    carrito = [];
+                    renderizarCarrito();
+                    localStorage.clear();
+        
+                }
+            })
         }
         function guardarCarritoEnLocalStorage () {
             localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -148,16 +167,18 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarProductos();
         renderizarCarrito();
     });
-
     const alerta = () => {
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }
-
-    let boton = document.getElementById('boton-finaliar')
-    boton.addEventListener('click', alerta)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+    
+        let boton = document.getElementById('boton-finaliar')
+        boton.addEventListener('click', alerta)
+        
+        
+       
