@@ -1,5 +1,10 @@
+async function loadData(){
+    const listaDeProductos = await fetch('./json/productos.json')
+const data = await listaDeProductos.json()
+console.log(data)
+}
 
-
+  loadData()
 document.addEventListener('DOMContentLoaded', () => {
  
     let carrito = [];
@@ -14,42 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
             this.precio = precio
             this.stock =stock
         } 
-        let listaDeProductos = [  {
-            "id": 1,
-            "nombre": "coca",
-            "precio": 280,
-            "stock": 100
-            },
-            {
-            "id": 2,
-            "nombre": "sprite",
-            "precio": 300,
-            "stock": 200
-            },
-            {
-            "id": 3,
-            "nombre": "agua",
-            "precio": 180,
-            "stock": 500
-            },
-            {
-            "id": 4,
-            "nombre": "manaos",
-            "precio": 210,
-            "stock": 340
-            },
-            {
-            "id": 5,
-            "nombre": "levite",
-            "precio": 240,
-            "stock": 10
-            },
-            {
-            "id": 6,
-            "nombre": "fernet",
-            "precio": 1200,
-            "stock": 2000
-            }];
+        
+
+                
+    
 
         
         
@@ -68,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     //precio
                     const miNodoPrecio = document.createElement('p');
                     miNodoPrecio.classList.add('card-text');
+                
+                
                     miNodoPrecio.innerText = `$${info.precio}`;
                     //stock
                     const miNodoStock = document.createElement('p');
@@ -181,4 +156,38 @@ document.addEventListener('DOMContentLoaded', () => {
         boton.addEventListener('click', alerta)
         
         
-       
+       // tabla //
+       const tr = document.createElement('tr')
+        const tdUno = document.createElement('td')
+        const tdDos = document.createElement('td')
+
+        tdUno.innerHTML = datos[addCarr.value].nombre
+        tdDos.innerHTML = datos[addCarr.value].precio
+
+       const carritoSinDuplicados = [...new Set(carrito)];
+       carritoSinDuplicados.forEach((item) => {
+        const miItem = datos.filter((itemBaseDatos) => {
+            return itemBaseDatos.id === parseInt(item);
+        });
+        const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+            return itemId === item ? total += 1 : total;
+        }, 0);
+        const miNodo = document.createElement('li');
+        miNodo.classList.add('list-group-item', 'text-rigth', 'mx-2');
+        miNodo.innerText = `${numeroUnidadesItem} x ${miItem[0].nombre} - $${miItem[0].precio} `;
+        const miBoton = document.createElement('button');
+        miBoton.classList.add('list-group-item', 'tect-rigth', 'mx-2');
+        miBoton.innerText = 'x';
+        miBoton.style.marginleft = '1rem';
+        miBoton.dataset.item = item;
+        miBoton.addEventListener('click', borrarItemCarrito);
+
+        miNodo.append(miBoton);
+        DOMcarrito.append(miNodo);
+        
+       });
+        
+        tr.appendChild(tdUno)
+        tr.appendChild(tdDos)
+
+       tablaCarr.appendChild(tr);
